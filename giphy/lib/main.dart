@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'ui/home.page.dart';
+import 'package:giphy/ui/home.page.dart';
 
 void main() {
-  runApp(MaterialApp(home: HomePage()));
+  runApp(MaterialApp(home: Home(), theme: ThemeData(hintColor: Colors.white)));
 }
