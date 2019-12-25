@@ -3,6 +3,9 @@ import 'dart:io';
 import 'package:contact_agenda/helpers/contact_helper.dart';
 import 'package:contact_agenda/ui/contact_page.dart';
 import 'package:flutter/material.dart';
+import "package:url_launcher/url_launcher.dart";
+
+enum OrderOption { orderAZ, orderZA }
 
 class HomePage extends StatefulWidget {
   @override
@@ -26,6 +29,21 @@ class _HomePageState extends State<HomePage> {
           title: Text("Contacts"),
           backgroundColor: Colors.red,
           centerTitle: true,
+          actions: <Widget>[
+            PopupMenuButton<OrderOption>(
+              itemBuilder: (context) => <PopupMenuEntry<OrderOption>>[
+                const PopupMenuItem<OrderOption>(
+                    child: Text('Ordernar A-Z'), value: OrderOption.orderAZ),
+                const PopupMenuItem<OrderOption>(
+                    child: Text('Ordernar Z-A'), value: OrderOption.orderZA)
+              ],
+              onSelected: (option) {
+                setState(() {
+                  this._orderList(option);
+                });
+              },
+            )
+          ],
         ),
         backgroundColor: Colors.white,
         floatingActionButton: FloatingActionButton(
@@ -88,6 +106,7 @@ class _HomePageState extends State<HomePage> {
 
   DecorationImage getCardImage(Contact contact) {
     return DecorationImage(
+        fit: BoxFit.cover,
         image: contact.img != null && contact.img.isNotEmpty
             ? FileImage(File(contact.img))
             : AssetImage("images/person.png"));
@@ -127,6 +146,18 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void _orderList(OrderOption option) {
+    if (option == OrderOption.orderAZ) {
+      this.contacts.sort((a, b) {
+        return a.name.toLowerCase().compareTo(b.name.toLowerCase());
+      });
+    } else {
+      this.contacts.sort((a, b) {
+        return b.name.toLowerCase().compareTo(a.name.toLowerCase());
+      });
+    }
+  }
+
   void _showOptions(BuildContext context, Contact contact) {
     showModalBottomSheet(
         context: context,
@@ -144,7 +175,10 @@ class _HomePageState extends State<HomePage> {
                       child: FlatButton(
                         child: Text("Ligar",
                             style: TextStyle(color: Colors.red, fontSize: 20)),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(context);
+                          launch("tel:${contact.phone}");
+                        },
                       ),
                     ),
                     Padding(
@@ -163,7 +197,13 @@ class _HomePageState extends State<HomePage> {
                       child: FlatButton(
                         child: Text("Excluir",
                             style: TextStyle(color: Colors.red, fontSize: 20)),
-                        onPressed: () {},
+                        onPressed: () {
+                          helper.deleteContact(contact.id);
+                          setState(() {
+                            contacts.remove(contact);
+                            Navigator.pop(context);
+                          });
+                        },
                       ),
                     )
                   ],
