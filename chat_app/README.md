@@ -1,6 +1,8 @@
 # chat_app
 
-A new Flutter project.
+A chat app with firebase
+
+![alt text](./chat-app.png);
 
 ## Getting Started
 
