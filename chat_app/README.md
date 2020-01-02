@@ -2,7 +2,7 @@
 
 A chat app with firebase
 
-![alt text](./chat-app.png);
+![alt text](./chat-app.png)
 
 ## Getting Started
 
