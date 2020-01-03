@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "128370807501",
+    "firebase_url": "https://virtual-store-bbc03.firebaseio.com",
+    "project_id": "virtual-store-bbc03",
+    "storage_bucket": "virtual-store-bbc03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128370807501:android:a7ae88c8b42e2b1cfa0f84",
+        "android_client_info": {
+          "package_name": "br.com.lg.virtual_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128370807501-oilkicve97ph3h7lk2ltb4ro5f1eq85o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBh5_9POiEoMjE8Dp3-IGGzQCXd2H0rSlM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128370807501-oilkicve97ph3h7lk2ltb4ro5f1eq85o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
